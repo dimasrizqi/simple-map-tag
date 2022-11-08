@@ -108,7 +108,15 @@
         }
         mymap.on('click', onMapClick); //jalankan fungsi
 
-        
+        var myIcon = L.icon({
+            iconUrl: 'my-icon.png',
+            iconSize: [38, 95],
+            iconAnchor: [22, 94],
+            popupAnchor: [-3, -76],
+            shadowUrl: 'my-icon-shadow.png',
+            shadowSize: [68, 95],
+            shadowAnchor: [22, 94]
+        });
 
         <?php
         
@@ -119,7 +127,8 @@
 
         //menggunakan fungsi L.marker(lat, long) untuk menampilkan latitude dan longitude
         //menggunakan fungsi str_replace() untuk menghilankan karakter yang tidak dibutuhkan
-        L.marker([<?php echo str_replace(['[', ']', 'LatLng', '(', ')'], '', $hasil['lat_long']); ?>]).addTo(mymap)
+        L.marker([<?php echo str_replace(['[', ']', 'LatLng', '(', ')'], '', $hasil['lat_long']); ?>], ).addTo(mymap)
+        // L.marker([<?php echo str_replace(['[', ']', 'LatLng', '(', ')'], '', $hasil['lat_long']); ?>], {icon: myIcon}).addTo(mymap)
 
                 //data ditampilkan di dalam bindPopup( data ) dan dapat dikustomisasi dengan html
                 .bindPopup(`<?php echo 'nama tempat:'.$hasil['nama_tempat'].'|kategori:'.$hasil['kategori'].'|keteragan:'.$hasil['keterangan']; ?>`)
